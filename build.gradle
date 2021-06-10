@@ -33,8 +33,16 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.projectlombok:lombok')
 
+    //스프링 부트용 Spring Data Jpa 추상화 라이브러리
+    //스프링 부트 버전에 맞춰서 자동으로 JPA 라이브러리 버전 관리
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+
+    //메모리 관계형 데이터 베이스
+    //애플리케이션 재실행 -> 초기화
+    //학습용으로 적절
+    compile('com.h2.database:h2')
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
-    testCompile("org.springframework.security:spring-security-test")
 }
 
 test {
