@@ -40,7 +40,7 @@ dependencies {
     //메모리 관계형 데이터 베이스
     //애플리케이션 재실행 -> 초기화
     //학습용으로 적절
-    compile('com.h2.database:h2')
+    compile('com.h2database:h2')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
