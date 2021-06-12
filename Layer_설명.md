@@ -32,3 +32,13 @@ DomainModel : domainService, entities, and value objects, 도메인이라고 불
 
 서비스메소드는 트랜잭션과 도메인간의 순서만 보장
 
+---
+
+###DI에 관하여..
+
+Controller와 Service에서 @Autowired 없는것이 어색하다.
+스프링에서 Bean을 주입받는 방법은 다음과 같다 
+
+1. @Autowired -> 권장하지 않음
+2. setter
+3. *생성자 -> 가장 추천 -> @RequiredArgsConstructor 에서 해결 (final이 선언된 모든 필드)를 인자값으로 하는 생성자를 대신 생성 해줌
