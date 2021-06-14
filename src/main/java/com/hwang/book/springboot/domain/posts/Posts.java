@@ -38,4 +38,9 @@ public class Posts {    //Entity 클래스, DB 테이블과 매칭, JPA 사용�
         this.content = content;
         this.author = author;
     }
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }
