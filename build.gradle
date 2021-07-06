@@ -42,6 +42,9 @@ dependencies {
     //학습용으로 적절
     compile('com.h2database:h2')
 
+    //Mustache Template Engine
+    compile('org.springframework.boot:spring-boot-starter-mustache')
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
