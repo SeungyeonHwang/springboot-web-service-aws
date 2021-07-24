@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Service
 public class PostsService {
@@ -20,15 +23,14 @@ public class PostsService {
     }
 
     /**
-     *
      * @param id
      * @param requestDto
      * @return id
-     *
+     * <p>
      * update에 쿼리 날리는 부분이 없다. -> JPA 영속성 컨텍스트 때문
      * 영속성 컨텍스트 : 엔티티를 영구 저장하는 환경(논리적 개념)
      * JPA의 핵심은 엔티티가 영속성 컨텍스트에 포함 되어있냐 아니냐에 따라 갈림
-     *      - 활성화 : 트랜젝션 안에서 데이터베이스에서 데이터를 가져오면 데이터의 영속성 컨텍스트가 유지된 상태(기본 값)
+     * - 활성화 : 트랜젝션 안에서 데이터베이스에서 데이터를 가져오면 데이터의 영속성 컨텍스트가 유지된 상태(기본 값)
      * 이상태에서 해당 데이터의 값을 변경하면 트랜젝션이 끝나는 시점에 해당 테이블 변경분을 반영 즉, Entity의 객체만 변경하면 별도로 쿼리를 날릴 필요가 없음 -> 더티 체킹
      */
     @Transactional
@@ -46,5 +48,21 @@ public class PostsService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id =" + id));
 
         return new PostsResponseDto(entity);
+    }
+
+    @Transactional(readOnly = true) //트랜잭션 범위는 유지, 조회 기능만 남겨놓아 조회 속도 개선(수정,삭제 기능 없는 서비스 사용 추천)
+    public List<PostsResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc().stream()
+                .map(PostsResponseDto::new) //.map(posts -> new PostsResponseDto(posts))
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        //존재하는 post인지 확인 후 삭제
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
+
+        postsRepository.delete(posts);
     }
 }
