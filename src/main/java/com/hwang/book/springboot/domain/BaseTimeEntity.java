@@ -1,4 +1,4 @@
-package com.hwang.book.springboot.domain.posts;
+package com.hwang.book.springboot.domain;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

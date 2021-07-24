@@ -1,5 +1,6 @@
 package com.hwang.book.springboot.domain.posts;
 
+import com.hwang.book.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor      //기본 생성자 자동 추가, public Post(){} 와 같은 효과
 @Entity     //테이블과 링크, 카멜케이스(테이블 이름) ex)sales_manager table, Setter 없다 -> 변경 필요한 곳을 명확히 구분하기 힘들어서 만들면 안됨, 메소드 추가로 수정하게 됨
-public class Posts extends BaseTimeEntity{    //Entity 클래스, DB 테이블과 매칭, JPA 사용시 실제 DB에 쿼리 날리는 것보다 Entity 수정을 통해 작업함
+public class Posts extends BaseTimeEntity {    //Entity 클래스, DB 테이블과 매칭, JPA 사용시 실제 DB에 쿼리 날리는 것보다 Entity 수정을 통해 작업함
 
     /**
      * Entity의 PK는 long Type auto_increment 추천
