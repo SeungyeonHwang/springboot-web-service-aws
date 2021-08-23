@@ -1,4 +1,4 @@
-var main = { //index.js만의 유효 범위 선언(중복 피하기 위해)
+var main = {
     init: function () {
         var _this = this;
         $('#btn-save').on('click', function () {

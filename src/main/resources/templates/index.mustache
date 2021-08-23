@@ -5,6 +5,19 @@
     <div class="row">
         <div class="col-md-6">
             <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
+            <!-- null 체크 못함, 항상 최종값 넘겨줘야한다(있으면 노출 시킴) -->
+            {{#userName}}
+                Logged in as: <span id="user">{{userName}}</span>
+                <!-- Spring Security 자체 제공 Logout(Controller 불요) -->
+                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+            {{/userName}}
+            <!-- 해당값이 없으면 -> ^ -->
+            <!-- userName 없다면 로그인 버튼 노출 -->
+            {{^userName}}
+                <!-- 기본적으로 제공하는 로그인 URL(Controller 불요) -->
+                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+                <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
+            {{/userName}}
         </div>
     </div>
     <br>

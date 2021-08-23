@@ -4,9 +4,9 @@ import com.hwang.book.springboot.domain.posts.Posts;
 import com.hwang.book.springboot.domain.posts.PostsRepository;
 import com.hwang.book.springboot.web.dto.PostsSaveRequestDto;
 import com.hwang.book.springboot.web.dto.PostsUpdateRequestDto;
-import org.junit.After;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -15,13 +15,13 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 //@WebMvcTest의 경우 JPA기능 작동하지 않음, Controller, ControllerAdvice 등 외부 연동과 관련된 부분만 활성화됨, JPA 기능까지 한번에 테스트 할때는 @SpringBootTest와 TestRestTemplete사용
 public class PostsApiControllerTest {
@@ -35,7 +35,7 @@ public class PostsApiControllerTest {
     @Autowired
     private PostsRepository postsRepository;
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         postsRepository.deleteAll();
     }

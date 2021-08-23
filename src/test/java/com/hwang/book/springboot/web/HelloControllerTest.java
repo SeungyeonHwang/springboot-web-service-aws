@@ -1,10 +1,10 @@
 package com.hwang.book.springboot.web;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.is;
@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
-@RunWith(SpringRunner.class)    //테스트 진행할 때, Junit에 내장된 실행자 외에 다른 실행자로 실행, 스프링 부트와 Junit 사이의 연결자
+@ExtendWith(SpringExtension.class)    //테스트 진행할 때, Junit에 내장된 실행자 외에 다른 실행자로 실행, 스프링 부트와 Junit 사이의 연결자
 @WebMvcTest(controllers = HelloController.class)
 //@Controller, @ControllerAdvice 등 사용 가능, @Service, @Repository 사용 불능
 public class HelloControllerTest {
