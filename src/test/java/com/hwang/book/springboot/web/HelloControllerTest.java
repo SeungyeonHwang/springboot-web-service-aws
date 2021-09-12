@@ -1,9 +1,13 @@
 package com.hwang.book.springboot.web;
 
+import com.hwang.book.springboot.config.auth.SecurityConfig;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -13,13 +17,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @ExtendWith(SpringExtension.class)    //테스트 진행할 때, Junit에 내장된 실행자 외에 다른 실행자로 실행, 스프링 부트와 Junit 사이의 연결자
-@WebMvcTest(controllers = HelloController.class)
-//@Controller, @ControllerAdvice 등 사용 가능, @Service, @Repository 사용 불능
+@WebMvcTest(controllers = HelloController.class,
+        excludeFilters = {
+                @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SecurityConfig.class)
+        }) // -> CustomOAuth2UserService 스캔 X / 스캔 대상에서 SecurityConfig 제거
+//@Controller, @ControllerAdvice 등 사용 가능, @Service, @Repository, @Component 사용 불능(스캔 대상이 아님)
 public class HelloControllerTest {
 
     @Autowired  //Bean 주입
     private MockMvc mvc;    //웹 API 테스트 할때 사용, 스프링 MVC의 시작점, HTTP GET, POST 등의 테스트 가능
 
+    @WithMockUser(roles = "USER") //권한 부여
     @Test
     public void hello_리턴됨() throws Exception {
         String hello = "hello";
@@ -29,6 +37,7 @@ public class HelloControllerTest {
                 .andExpect(content().string(hello));
     }
 
+    @WithMockUser(roles = "USER") //권한 부여
     @Test
     public void helloDto_리턴됨() throws Exception {
         String name = "hello";
