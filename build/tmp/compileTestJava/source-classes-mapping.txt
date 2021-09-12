@@ -1,2 +1,10 @@
+com/hwang/book/springboot/domain/posts/PostsRepositoryTest.java
+ com.hwang.book.springboot.domain.posts.PostsRepositoryTest
+com/hwang/book/springboot/web/dto/HelloResponseDtoTest.java
+ com.hwang.book.springboot.web.dto.HelloResponseDtoTest
+com/hwang/book/springboot/web/PostsApiControllerTest.java
+ com.hwang.book.springboot.web.PostsApiControllerTest
+com/hwang/book/springboot/web/IndexControllerTest.java
+ com.hwang.book.springboot.web.IndexControllerTest
 com/hwang/book/springboot/web/HelloControllerTest.java
  com.hwang.book.springboot.web.HelloControllerTest

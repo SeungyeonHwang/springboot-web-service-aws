@@ -20,9 +20,9 @@ public class IndexControllerTest {
     @Test
     public void 메인페이지_로딩() {
         //when
-        String body = this.restTemplate.getForObject("/", String.class);    //지정 Url로 호출
+        String body = this.restTemplate.getForObject("/", String.class);
 
         //then
-        assertThat(body).contains("스프링 부트로 시작하는 웹 서비스");
+        assertThat(body).contains("스프링부트로 시작하는 웹 서비스");
     }
 }
